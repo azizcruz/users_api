@@ -47,18 +47,14 @@ class Command(BaseCommand):
                 )
             
             # Add data and their relationships
-            try:
-                user.save()
-                address.user = user
-                company.user = user
-                address.save()
-                company.save()
-                geo.address = address
-                geo.save()
-                return True
-            except IntegrityError:
-                self.stderr.write('Duplicated unique data')
-                break
+            user.save()
+            address.user = user
+            company.user = user
+            address.save()
+            company.save()
+            geo.address = address
+            geo.save()
+        return True
             
 
         
