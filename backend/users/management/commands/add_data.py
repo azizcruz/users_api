@@ -47,7 +47,12 @@ class Command(BaseCommand):
                 )
             
             # Add data and their relationships
-            user.save()
+            try:
+                user.save()
+            except IntegrityError:
+                self.stderr.write('Duplicated unique users data')
+                return False
+            
             address.user = user
             company.user = user
             address.save()
@@ -55,7 +60,6 @@ class Command(BaseCommand):
             geo.address = address
             geo.save()
         return True
-            
 
         
 
