@@ -50,7 +50,7 @@ class Command(BaseCommand):
             try:
                 user.save()
             except IntegrityError:
-                self.stderr.write('Duplicated unique users data')
+                self.stderr.write('Error: Duplicated unique users data')
                 return False
             
             address.user = user
